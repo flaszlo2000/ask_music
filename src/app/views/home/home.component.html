@@ -1,0 +1,37 @@
+<main>
+    <mat-card>
+        <mat-card-content>
+            <div>
+                You are doing great! Send any music link/title with author that you would like to hear tonight!
+            </div>
+        </mat-card-content>
+    </mat-card>
+    <mat-card>
+        <mat-card-content id="content">
+            <mat-form-field appearance="outline">
+                <mat-label>Request</mat-label>
+                <input matInput type="text" placeholder="link/text" [formControl]="request_form_control" required />
+
+                <button
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    *ngIf="!!request_form_control.value"
+                    (click)="request_form_control.setValue('')"
+                >
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="request_form_control.invalid"
+                (click)="sendRequestedRecord()">
+                send
+            </button>
+        </mat-card-content>
+    </mat-card>
+
+    <div id="stored">
+        <stored-record *ngFor="let already_sent_request of already_sent_requests">
+            {{already_sent_request}}
+        </stored-record>
+    </div>
+</main>

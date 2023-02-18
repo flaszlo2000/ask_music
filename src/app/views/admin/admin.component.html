@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">Schoolbuilding music request admin dashboard</mat-toolbar>
+<mat-tab-group dynamicHeight color="accent" [(selectedIndex)]=selectedIndex>
+    <mat-tab label="Ongoing event info">
+        <admin-event-info
+            [event_update$]="events_update.asObservable()"
+            (eventUpdate)="event_info_update.next()"
+        >
+        </admin-event-info>
+    </mat-tab>
+    <mat-tab label="Record handler" focus>
+        <admin-record-table></admin-record-table>
+    </mat-tab>
+    <mat-tab label="Events">
+        <admin-event-table
+            [event_update$]="event_info_update.asObservable()"
+            (eventUpdate)="events_update.next()"
+        >
+        </admin-event-table>
+    </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,38 @@
+<main>
+    <mat-card>
+        <mat-card-header>
+            Welcome to schoolbuild's music requester!
+        </mat-card-header>
+        <ng-container *ngIf="ongoing_event$ | async; else there_is_no_ongoing_event">
+            <div class="event-name">
+                Current event's name: {{(ongoing_event$ | async)?.name}}
+            </div>
+            <mat-card-content>
+                <div>
+                    To be able to send requests, please use the provided password
+                </div>
+                <visibility-input [form_control]="event_password">Event password</visibility-input>
+                <ng-container *ngIf="!waiting_for_response; else wait_for_response">
+                    <button mat-raised-button color="primary" (click)="checkPwd()" [disabled]="!event_password.valid">
+                        Next
+                    </button>
+                </ng-container>
+            </mat-card-content>
+        </ng-container>
+    </mat-card>
+</main>
+
+<ng-template #there_is_no_ongoing_event>
+    <mat-card-content id="no-event">
+        <div>
+            Sorry, but currently we don't host any event! :(
+        </div>
+        <div>
+            <img src="assets/shibe.jpeg" alt="sad doggo" />
+        </div>
+    </mat-card-content>
+</ng-template>
+
+<ng-template #wait_for_response>
+    :)
+</ng-template>

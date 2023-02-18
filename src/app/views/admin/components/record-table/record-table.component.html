@@ -1,0 +1,18 @@
+<div id="record_lines" *ngIf="undone_records.length > 0; else no_records">
+    <record-line
+        *ngFor="let record of undone_records"
+        [record]="record"
+        (delete)="recordDelete(record.id)"
+        (done)="changeRecordState(record.id, !record.done)"
+    >
+    </record-line>
+</div>
+
+<ng-template #no_records>
+    <mat-card>
+        <mat-card-content>
+            No records yet :(
+        </mat-card-content>
+    </mat-card>
+</ng-template>
+

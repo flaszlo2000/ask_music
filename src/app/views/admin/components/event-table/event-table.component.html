@@ -1,0 +1,13 @@
+<div>
+    <div>Following events are in the db</div>
+    <div *ngFor="let event of events$ | async">
+        {{event.name}}
+        <button
+            mat-raised-button
+            [color]="event.alive ? 'warn' : 'primary'"
+            (click)="changeEventState(event.id, !event.alive)"
+        >
+            {{event.alive ? "Stop" : "Start"}}
+        </button>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { OnGoingEventModel } from '../../models/ongoing_event.model';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class DbService {
+  protected SERVER_BASE_URL = environment.server_uri;
+
+  constructor(protected http_client: HttpClient) { }
+
+  public getOngoingEvent(): Observable<OnGoingEventModel> {
+    return this.http_client.get<OnGoingEventModel>(this.SERVER_BASE_URL.concat("/event"));
+  }
+
+  public checkPasswordForEvent(event_id: string, password: string): Observable<Boolean> {
+    return this.http_client.post<Boolean>(
+      this.SERVER_BASE_URL.concat("/event_login/".concat(event_id)),
+      password
+    );
+  }
+
+  public addRecord(event_id: string, record: string): Observable<void> {
+    return this.http_client.post<void>(
+      this.SERVER_BASE_URL.concat("/record_request/".concat(event_id)),
+      record
+    )
+  }
+}

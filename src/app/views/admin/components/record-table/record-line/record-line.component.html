@@ -1,0 +1,13 @@
+<div *ngIf="!!record_data">
+    <span>
+        {{record_data.value}}
+    </span>
+    <span class="record-line-buttons">
+        <button mat-mini-fab color="warn" (click)="delete.emit()">
+            <mat-icon>close</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" (click)="done.emit()">
+            <mat-icon>done</mat-icon>
+        </button>
+    </span>
+</div>

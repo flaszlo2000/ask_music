@@ -1,0 +1,14 @@
+admin-event-info, admin-record-table {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+
+admin-record-table {
+    max-height: 85%;
+}
+
+mat-tab-group {
+    padding: 5px;
+    height: 80%;
+}

@@ -1,0 +1,14 @@
+button {
+    scale: 75%;
+}
+
+div {
+    display: flex;
+    border: 1px solid grey;
+
+    justify-content: space-between;
+}
+
+.record-line-buttons {
+    display: flex;
+}
