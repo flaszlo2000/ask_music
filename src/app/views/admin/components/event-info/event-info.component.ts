@@ -26,11 +26,11 @@ export class EventInfoComponent {
 
   @Input() set editable(state: boolean) {
     this.allow_edit = state;
-    this.checkPasswordFormState();
+    this.checkFormControlState();
   }
   @Input() set form_control(form_control: FormControl) {
     this.password_form_control = form_control;
-    this.checkPasswordFormState();
+    this.checkFormControlState();
   }
   @Input() set event_detail(data: DetailedEventModel) {
     this.tmp_event_detail = data;
@@ -42,12 +42,19 @@ export class EventInfoComponent {
 
   constructor() { }
 
-  private checkPasswordFormState(): void {
-    if(this.allow_edit) {
-      this.password_form_control.enable();
-    } else {
-      this.password_form_control.disable();
-    }
+  private checkFormControlState(): void {
+    const form_controls = [
+      this.name_form_control,
+      this.password_form_control,
+    ]
+
+    form_controls.forEach(form_control => {
+      if(this.allow_edit) {
+        form_control.enable();
+      } else {
+        form_control.disable();
+      }
+    });
   }
 
   public cancelEditAction(): void {
@@ -56,12 +63,12 @@ export class EventInfoComponent {
   }
 
   public saveAction(): void {
-    
+
   }
 
   public toggleEdit(): void {
     this.allow_edit = !this.allow_edit;
-    this.checkPasswordFormState();
+    this.checkFormControlState();
 
     if(!this.allow_edit) {
       this.inner_event_detail = this.tmp_event_detail;
