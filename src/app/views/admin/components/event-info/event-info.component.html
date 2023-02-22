@@ -3,6 +3,7 @@
         <ng-container *ngIf="!!ongoing_event_detail; else no_ongoing_event">
             <mat-card-title>
                 We are hosting an event!
+                <!-- @Input() title -->
             </mat-card-title>
             <mat-card-content>
                 <mat-form-field>
@@ -38,7 +39,7 @@
 <ng-template #no_ongoing_event>
     <!-- TODO FIXME change switchmap to one call and with that the console error will vanish -->
     <mat-card-content>
-        There is no active event! 
+        There is no active event!
     </mat-card-content>    
 </ng-template>
 

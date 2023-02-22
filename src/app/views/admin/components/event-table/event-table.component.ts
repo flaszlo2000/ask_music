@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
-import { HttpResponeHandler } from 'src/app/shared/classes/http_response_handler';
 import { EventUpdateHandler } from '../../classes/event_update_handler';
 import { RefreshableDataSource } from '../../classes/refreshable_data_source';
 import { DetailedEventModel } from '../../models/detailed_event.model';
 import { AdminService } from '../../services/admin.service';
+import { AdditionWindowComponent } from './components/addition-window/addition-window.component';
 
 @Component({
   selector: 'admin-event-table',
@@ -18,7 +19,8 @@ export class EventTableComponent extends EventUpdateHandler {
 
   constructor(
     private admin_service: AdminService,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private dialog: MatDialog
   ) {
     super(snackbar);
 
@@ -46,5 +48,11 @@ export class EventTableComponent extends EventUpdateHandler {
         error: (err) => this.handleHttpError(err),
       }
     );
+  }
+
+  public addNewEvent(): void {
+    this.dialog.open(AdditionWindowComponent).afterClosed().subscribe(result => {
+      console.log(result)
+    });
   }
 }

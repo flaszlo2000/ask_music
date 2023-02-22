@@ -18,6 +18,8 @@ import { VisibilityInputModule } from 'src/app/shared/components/visibility-inpu
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RecordLineComponent } from './components/record-table/record-line/record-line.component';
 import { MatIconModule } from '@angular/material/icon';
+import { AdditionWindowComponent } from './components/event-table/components/addition-window/addition-window.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { MatIconModule } from '@angular/material/icon';
     EventInfoComponent,
     RecordTableComponent,
     EventTableComponent,
-    RecordLineComponent
+    RecordLineComponent,
+    AdditionWindowComponent
   ],
   imports: [
     CommonModule,
@@ -41,6 +44,7 @@ import { MatIconModule } from '@angular/material/icon';
     VisibilityInputModule,
     MatSnackBarModule,
     MatIconModule,
+    MatDialogModule
   ],
   providers: [
     DbService,
