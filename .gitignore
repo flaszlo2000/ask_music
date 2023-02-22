@@ -46,3 +46,4 @@ src/assets/shibe.jpeg
 firebase.json
 
 src/environments/environment.prod.ts
+deploy.sh
