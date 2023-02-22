@@ -11,3 +11,10 @@
 .event-box {
     border: 1px solid black;
 }
+
+.event-table-action-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: right;
+}

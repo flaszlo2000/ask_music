@@ -1,4 +1,6 @@
 .event-info-content {
+    display: flex;
+    justify-content: center;
     padding: 5px;
 }
 

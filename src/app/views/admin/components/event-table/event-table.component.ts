@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
@@ -45,7 +45,10 @@ export class EventTableComponent extends EventUpdateHandler {
     this.admin_service.changeEventState(event_id, new_state).subscribe(
       {
         next: () => this.handeSuccessfulStateChange(),
-        error: (err) => this.handleHttpError(err),
+        error: (err) => this.handleHttpError(
+          err,
+          "There is an already running event!"
+        ),
       }
     );
   }

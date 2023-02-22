@@ -1,17 +1,5 @@
 <div>The following events are present in the db:</div>
 
-<!-- <div *ngFor="let event of events$ | async" class="event-box">
-    <event-info
-        [event_detail]="event"
-    >
-    </event-info>
-
-    <button mat-raised-button [color]="event.alive ? 'warn' : 'primary'"
-        (click)="changeEventState(event.id, !event.alive)">
-        {{event.alive ? "Stop" : "Start"}}
-    </button>
-</div> -->
-
 <mat-accordion id="mat-expansion-panel-title">
     <mat-expansion-panel disabled>
         <mat-expansion-panel-header>
@@ -31,6 +19,14 @@
 
             <div>
                 <event-info [event_detail]="event"></event-info>
+                <div class="event-table-action-buttons">
+                    <button mat-raised-button color="warn" *ngIf="!event.alive">Delete</button>
+                    <button mat-raised-button color="accent">Edit</button>
+                    <button mat-raised-button [color]="event.alive ? 'warn' : 'primary'"
+                        (click)="changeEventState(event.id, !event.alive)">
+                        {{event.alive ? "Stop" : "Start"}}
+                    </button>
+                </div>
             </div>
         </mat-expansion-panel>
     </mat-accordion>
