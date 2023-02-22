@@ -1,1 +1,9 @@
-<p>addition-window works!</p>
+<div mat-dialog-title>
+    <span>Add new event</span>
+    <event-info
+        [form_control]="new_event_password_form_control"
+        [editable]="true"
+        (cancelEdit)="dialogRef.close()"
+    >
+    </event-info>
+</div>

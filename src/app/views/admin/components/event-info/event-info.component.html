@@ -1,23 +1,23 @@
-<div *ngIf="!!event_detail" class="event-info-content">
+<div *ngIf="!!inner_event_detail" class="event-info-content">
     <mat-form-field>
         <mat-label>Name</mat-label>
-        <input matInput type="text" [value]="event_detail.name" [disabled]="!allow_edit" />
+        <!-- TODO FIX disabled stat -->
+        <input matInput type="text" [formControl]="name_form_control" required />
     </mat-form-field>
 
     <visibility-input [form_control]="password_form_control">Password</visibility-input>
 
-    <mat-form-field *ngIf="event_detail.note != ''">
+    <mat-form-field *ngIf="inner_event_detail.note != ''">
         <!-- TODO FIXME -->
         <mat-label>Note</mat-label>
-        <textarea matInput [disabled]="!allow_edit">{{event_detail.note}}</textarea>
+        <textarea matInput [disabled]="!allow_edit">{{inner_event_detail.note}}</textarea>
     </mat-form-field>
 
     <ng-container *ngIf="allow_edit">
-        <!-- TODO not just toggle but cancel update -->
         <button mat-raised-button color="warn" (click)="cancelEditAction()">
             Cancel
         </button>
-        <button mat-raised-button color="primary">
+        <button mat-raised-button color="primary" (click)="saveAction()">
             Save
         </button>
     </ng-container>

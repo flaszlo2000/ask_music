@@ -4,7 +4,7 @@ import { AdminComponent } from './admin.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs'
 import { RouterModule } from '@angular/router';
 import { EventInfoComponent } from './components/event-info/event-info.component';
