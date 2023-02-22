@@ -82,4 +82,13 @@ export class EventTableComponent extends EventUpdateHandler implements OnDestroy
         );
     });
   }
+
+  public deleteEvent(event_id: string): void {
+    this.event_updater_sub = this.admin_service.deleteEvent(event_id).subscribe(
+      {
+        next: () => this.handeSuccessfulStateChange(),
+        error: (err) => this.handleHttpError(err),
+      }
+    )
+  }
 }

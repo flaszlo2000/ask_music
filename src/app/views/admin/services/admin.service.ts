@@ -50,4 +50,10 @@ export class AdminService extends DbService {
       new_event
     );
   }
+
+  public deleteEvent(event_id: string): Observable<void> {
+    return this.http_client.delete<void>(
+      this.SERVER_BASE_URL.concat("/admin/delete_event/".concat(event_id))
+    );
+  }
 }

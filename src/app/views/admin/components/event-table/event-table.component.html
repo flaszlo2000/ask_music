@@ -20,7 +20,7 @@
             <div>
                 <event-info [event_detail]="event"></event-info>
                 <div class="event-table-action-buttons">
-                    <button mat-raised-button color="warn" *ngIf="!event.alive">Delete</button>
+                    <button mat-raised-button color="warn" *ngIf="!event.alive" (click)="deleteEvent(event.id)">Delete</button>
                     <button mat-raised-button color="accent">Edit</button>
                     <button mat-raised-button [color]="event.alive ? 'warn' : 'primary'"
                         (click)="changeEventState(event.id, !event.alive)">
