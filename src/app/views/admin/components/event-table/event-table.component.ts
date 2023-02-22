@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { AdditionWindowComponent } from './components/addition-window/addition-w
   templateUrl: './event-table.component.html',
   styleUrls: ['./event-table.component.css']
 })
-export class EventTableComponent extends EventUpdateHandler {
+export class EventTableComponent extends EventUpdateHandler implements OnDestroy {
   private r_events: RefreshableDataSource<Array<DetailedEventModel>>;
   public events$: Observable<Array<DetailedEventModel>>;
 
@@ -31,6 +31,14 @@ export class EventTableComponent extends EventUpdateHandler {
     );
 
     this.events$ = this.r_events.data$;
+  }
+
+  override ngOnDestroy(): void {
+      super.ngOnDestroy();
+      
+      if(!!this.dialog_sub) {
+        this.dialog_sub.unsubscribe();
+      }
   }
 
   protected refresh(): void {
