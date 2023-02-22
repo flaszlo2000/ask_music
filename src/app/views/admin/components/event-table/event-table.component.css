@@ -1,0 +1,8 @@
+.event-content {
+    display: flex;
+}
+
+#add-new-event {
+    position: absolute;
+    right: 1px;
+}

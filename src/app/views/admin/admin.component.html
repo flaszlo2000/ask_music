@@ -3,17 +3,23 @@
     <mat-tab label="Ongoing event info">
         <admin-event-info
             [event_update$]="events_update.asObservable()"
-            (eventUpdate)="event_info_update.next()"
+            (eventUpdate)="eventInfoUpdate()"
+            class="tab-option"
         >
         </admin-event-info>
     </mat-tab>
-    <mat-tab label="Record handler" focus>
-        <admin-record-table></admin-record-table>
+    <mat-tab label="Record handler">
+        <admin-record-table
+            [event_update$]="any_update.asObservable()"
+            class="tab-option"
+        >
+        </admin-record-table>
     </mat-tab>
     <mat-tab label="Events">
         <admin-event-table
             [event_update$]="event_info_update.asObservable()"
-            (eventUpdate)="events_update.next()"
+            (eventUpdate)="eventsUpdate()"
+            class="tab-option"
         >
         </admin-event-table>
     </mat-tab>
