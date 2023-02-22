@@ -1,19 +1,43 @@
-<div class="event-content">
-    <div>
+<div>The following events are present in the db:</div>
 
-        <div>Following events are in the db</div>
-        <div *ngFor="let event of events$ | async">
-            {{event.name}}
-            <button mat-raised-button [color]="event.alive ? 'warn' : 'primary'"
-                (click)="changeEventState(event.id, !event.alive)">
-                {{event.alive ? "Stop" : "Start"}}
-            </button>
-        </div>
-    </div>
+<!-- <div *ngFor="let event of events$ | async" class="event-box">
+    <event-info
+        [event_detail]="event"
+    >
+    </event-info>
 
-    <div id="add-new-event">
-        <button mat-mini-fab (click)="addNewEvent()">
-            <mat-icon>add</mat-icon>
-        </button>
-    </div>
+    <button mat-raised-button [color]="event.alive ? 'warn' : 'primary'"
+        (click)="changeEventState(event.id, !event.alive)">
+        {{event.alive ? "Stop" : "Start"}}
+    </button>
+</div> -->
+
+<mat-accordion id="mat-expansion-panel-title">
+    <mat-expansion-panel disabled>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Name</mat-panel-title>
+            <mat-panel-description>status</mat-panel-description>
+        </mat-expansion-panel-header>
+    </mat-expansion-panel>
+</mat-accordion>
+
+<div class="events">
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let event of events$ | async" [expanded]="event.alive">
+            <mat-expansion-panel-header>
+                <mat-panel-title>{{event.name}}</mat-panel-title>
+                <mat-panel-description *ngIf="event.alive">active</mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div>
+                <event-info [event_detail]="event"></event-info>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
+
+<div id="add-new-event">
+    <button mat-mini-fab (click)="addNewEvent()">
+        <mat-icon>add</mat-icon>
+    </button>
 </div>

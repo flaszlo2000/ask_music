@@ -20,6 +20,8 @@ import { RecordLineComponent } from './components/record-table/record-line/recor
 import { MatIconModule } from '@angular/material/icon';
 import { AdditionWindowComponent } from './components/event-table/components/addition-window/addition-window.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CurrentEventComponent } from './components/current-event/current-event.component';
+import { MatExpansionModule } from '@angular/material/expansion'
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     RecordTableComponent,
     EventTableComponent,
     RecordLineComponent,
-    AdditionWindowComponent
+    AdditionWindowComponent,
+    CurrentEventComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +47,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     VisibilityInputModule,
     MatSnackBarModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule
   ],
   providers: [
     DbService,

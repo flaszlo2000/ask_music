@@ -1,0 +1,38 @@
+<div class="event-info-content">
+    <mat-card>
+        <ng-container *ngIf="!!event_detail; else no_ongoing_event">
+            <mat-card-title>We are hosting an event!</mat-card-title>
+            <mat-card-content>
+                <event-info
+                    [event_detail]="event_detail"
+                    [form_control]="event_info_password_form_control"
+                    (cancelEdit)="toggleEdit()"
+                    #event_info
+                >
+                </event-info>
+            </mat-card-content>
+            <mat-card-actions *ngIf="!edit" class="action-buttons">
+                <button
+                    mat-raised-button
+                    color="warn"
+                    (click)="toggleEventState(event_detail.id, !event_detail.alive)"
+                >
+                    Stop
+                </button>
+                <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="startEdit()"
+                >
+                    Edit
+                </button>
+            </mat-card-actions>
+        </ng-container>
+    </mat-card>
+</div>
+
+<ng-template #no_ongoing_event>
+    <mat-card-content>
+        There is no active event!
+    </mat-card-content>    
+</ng-template>

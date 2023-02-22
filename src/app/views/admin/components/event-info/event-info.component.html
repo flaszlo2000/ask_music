@@ -1,54 +1,24 @@
-<div class="event-info-content">
-    <mat-card>
-        <ng-container *ngIf="!!ongoing_event_detail; else no_ongoing_event">
-            <mat-card-title>
-                We are hosting an event!
-                <!-- @Input() title -->
-            </mat-card-title>
-            <mat-card-content>
-                <mat-form-field>
-                    <mat-label>Name</mat-label>
-                    <input matInput type="text" [value]="ongoing_event_detail.name" [disabled]="!allow_edit" />
-                </mat-form-field>
+<div *ngIf="!!event_detail" class="event-info-content">
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput type="text" [value]="event_detail.name" [disabled]="!allow_edit" />
+    </mat-form-field>
 
-                <visibility-input [form_control]="password_form_control">Password</visibility-input>
+    <visibility-input [form_control]="password_form_control">Password</visibility-input>
 
-                <mat-form-field *ngIf="ongoing_event_detail.note != ''">
-                    <!-- TODO FIXME -->
-                    <mat-label>Note</mat-label>
-                    <textarea matInput [disabled]="!allow_edit">{{ongoing_event_detail.note}}</textarea>
-                </mat-form-field>
-            </mat-card-content>
-            <mat-card-actions [align]="'end'">
-                <ng-container *ngIf="!allow_edit; else edit">
-                    <button
-                        mat-raised-button
-                        color="warn"
-                        (click)="toggleEventState(ongoing_event_detail.id, !ongoing_event_detail.alive)"
-                    >
-                        Stop
-                    </button>
-                    <button mat-raised-button color="primary" (click)="toggleEdit()">Edit</button>
-                </ng-container>
-            </mat-card-actions>
-        </ng-container>
-    </mat-card>
+    <mat-form-field *ngIf="event_detail.note != ''">
+        <!-- TODO FIXME -->
+        <mat-label>Note</mat-label>
+        <textarea matInput [disabled]="!allow_edit">{{event_detail.note}}</textarea>
+    </mat-form-field>
+
+    <ng-container *ngIf="allow_edit">
+        <!-- TODO not just toggle but cancel update -->
+        <button mat-raised-button color="warn" (click)="cancelEditAction()">
+            Cancel
+        </button>
+        <button mat-raised-button color="primary">
+            Save
+        </button>
+    </ng-container>
 </div>
-
-
-<ng-template #no_ongoing_event>
-    <!-- TODO FIXME change switchmap to one call and with that the console error will vanish -->
-    <mat-card-content>
-        There is no active event!
-    </mat-card-content>    
-</ng-template>
-
-<ng-template #edit>
-    <!-- TODO not just toggle but cancel changes-->
-    <button mat-raised-button color="warn" (click)="toggleEdit()">
-        Cancel
-    </button>
-    <button mat-raised-button color="primary">
-        Save
-    </button>
-</ng-template>

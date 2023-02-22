@@ -1,8 +1,13 @@
-.event-content {
-    display: flex;
+#add-new-event {
+    position: fixed;
+    right: 1%;
+    bottom: 3%;
 }
 
-#add-new-event {
-    position: absolute;
-    right: 1px;
+.events {
+    overflow-y: auto;
+}
+
+.event-box {
+    border: 1px solid black;
 }

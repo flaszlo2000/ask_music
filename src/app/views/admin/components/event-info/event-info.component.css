@@ -1,9 +1,4 @@
-mat-card-content {
+.event-info-content {
     display: flex;
     flex-direction: column;
-}
-
-mat-card-actions {
-    display: flex;
-    gap: 5px;
 }
