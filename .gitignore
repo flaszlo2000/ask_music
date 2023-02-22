@@ -41,3 +41,8 @@ testem.log
 .DS_Store
 Thumbs.db
 src/assets/shibe.jpeg
+.firebase
+.firebaserc
+firebase.json
+
+src/environments/environment.prod.ts
