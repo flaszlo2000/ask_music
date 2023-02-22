@@ -43,4 +43,11 @@ export class AdminService extends DbService {
       this.SERVER_BASE_URL.concat("/admin/events")
     );
   }
+
+  public addEvent(new_event: DetailedEventModel): Observable<void> {
+    return this.http_client.post<void>(
+      this.SERVER_BASE_URL.concat("/admin/add_event"),
+      new_event
+    );
+  }
 }

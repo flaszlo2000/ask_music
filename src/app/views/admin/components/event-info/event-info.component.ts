@@ -63,7 +63,15 @@ export class EventInfoComponent {
   }
 
   public saveAction(): void {
+    const result: DetailedEventModel = {
+      name: this.name_form_control.getRawValue(),
+      password: this.password_form_control.getRawValue(),
+      note: this.inner_event_detail.note,
+      alive: this.inner_event_detail.alive,
+      id: this.inner_event_detail.id
+    };
 
+    this.onEdit.emit(result);
   }
 
   public toggleEdit(): void {

@@ -4,6 +4,7 @@
         [form_control]="new_event_password_form_control"
         [editable]="true"
         (cancelEdit)="dialogRef.close()"
+        (onEdit)="saveNewEvent($event)"
     >
     </event-info>
 </div>

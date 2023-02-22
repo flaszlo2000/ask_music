@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef} from '@angular/material/dialog';
+import { DetailedEventModel } from 'src/app/views/admin/models/detailed_event.model';
 
 
 @Component({
@@ -13,5 +14,9 @@ export class AdditionWindowComponent {
 
   constructor(
     public dialogRef: MatDialogRef<AdditionWindowComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+  ) { }
+  
+  public saveNewEvent(new_event: DetailedEventModel): void {
+    this.dialogRef.close(new_event);
+  }
 }
