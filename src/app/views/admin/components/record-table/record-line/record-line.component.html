@@ -1,6 +1,9 @@
 <div *ngIf="!!record_data">
     <span>
         {{record_data.value}}
+        <button mat-icon-button [cdkCopyToClipboard]="record_data.value" (click)="successfullCopy()">
+            <mat-icon>event_note</mat-icon>
+        </button>
     </span>
     <span class="record-line-buttons">
         <button mat-mini-fab color="warn" (click)="delete.emit()">

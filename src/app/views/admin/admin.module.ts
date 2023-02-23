@@ -22,6 +22,8 @@ import { AdditionWindowComponent } from './components/event-table/components/add
 import { MatDialogModule } from '@angular/material/dialog';
 import { CurrentEventComponent } from './components/current-event/current-event.component';
 import { MatExpansionModule } from '@angular/material/expansion'
+import { WebsocketService } from './services/websocket.service';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 
 @NgModule({
@@ -48,11 +50,13 @@ import { MatExpansionModule } from '@angular/material/expansion'
     MatSnackBarModule,
     MatIconModule,
     MatDialogModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ClipboardModule
   ],
   providers: [
     DbService,
-    AdminService
+    AdminService,
+    WebsocketService
   ],
   exports: [
     AdminLoginComponent,

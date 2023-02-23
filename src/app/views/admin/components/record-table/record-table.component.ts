@@ -5,6 +5,7 @@ import { EventUpdateHandler } from '../../classes/event_update_handler';
 import { RefreshableDataSource } from '../../classes/refreshable_data_source';
 import { RecordModel } from '../../models/record.model';
 import { AdminService } from '../../services/admin.service';
+import { WebsocketService } from '../../services/websocket.service';
 
 @Component({
   selector: 'admin-record-table',
@@ -12,38 +13,44 @@ import { AdminService } from '../../services/admin.service';
   styleUrls: ['./record-table.component.css']
 })
 export class RecordTableComponent extends EventUpdateHandler implements OnDestroy {
-  private r_event_records: RefreshableDataSource<Array<RecordModel>>;
-  private ongoing_event_records_sub: Subscription;
+  // private r_event_records: RefreshableDataSource<Array<RecordModel>>;
+  // private ongoing_event_records_sub: Subscription;
   private ongoing_event_records?: Array<RecordModel>;
+
+  public records$: Observable<Array<RecordModel>>;
 
   constructor(
     private admin_service: AdminService,
+    private ws_sevice: WebsocketService,
     private snackbar: MatSnackBar
   ) {
     super(snackbar);
 
-    this.r_event_records = new RefreshableDataSource<Array<RecordModel>>(
-      //! FIXME make this on call
-      this.admin_service.getOngoingEvent().pipe(
-        switchMap(ongoing_event => {
-          return this.admin_service.getRecordsFor(ongoing_event.id).pipe(
-            catchError((err) => {
-              console.log("------------------------------------------")
-              return of(err);
-            })
-          );
-        })
-      )
-    );
+    // this.r_event_records = new RefreshableDataSource<Array<RecordModel>>(
+    //   //! FIXME make this on call
+    //   this.admin_service.getOngoingEvent().pipe(
+    //     switchMap(ongoing_event => {
+    //       return this.admin_service.getRecordsFor(ongoing_event.id).pipe(
+    //         catchError((err) => {
+    //           console.log("------------------------------------------")
+    //           return of(err);
+    //         })
+    //       );
+    //     })
+    //   )
+    // );
 
-    this.ongoing_event_records_sub = this.r_event_records.data$.subscribe(result => {
-      this.ongoing_event_records = result;
-    });
+    // this.ongoing_event_records_sub = this.r_event_records.data$.subscribe(result => {
+    //   this.ongoing_event_records = result;
+    // });
+
+
+    this.records$ = this.ws_sevice.data$();
   }
 
   override ngOnDestroy(): void {
     super.ngOnDestroy();  
-    this.ongoing_event_records_sub.unsubscribe();
+    // this.ongoing_event_records_sub.unsubscribe();
   }
 
   private recordFilter(done: boolean): Array<RecordModel> {
@@ -69,7 +76,7 @@ export class RecordTableComponent extends EventUpdateHandler implements OnDestro
   }
 
   protected refresh(): void {
-    this.r_event_records.refresh();
+    // this.r_event_records.refresh();
   }
 
   public recordDelete(id: number): void {

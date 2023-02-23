@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { RecordModel } from '../../../models/record.model';
 
 @Component({
@@ -15,5 +16,15 @@ export class RecordLineComponent {
   @Input() set record(data: RecordModel) {
     this.record_data = data;
   }
+  
+  constructor(
+    private clipboard_snackbar: MatSnackBar
+  ) { }
 
+
+  public successfullCopy(): void {
+    this.clipboard_snackbar.open("Copied to the clipboard!", "", {
+      duration: 1000
+    });
+  }
 }

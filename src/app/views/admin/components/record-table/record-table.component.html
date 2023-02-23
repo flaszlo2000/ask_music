@@ -1,4 +1,4 @@
-<div id="record_lines" *ngIf="undone_records.length > 0; else no_records">
+<!-- <div id="record_lines" *ngIf="undone_records.length > 0; else no_records">
     <record-line
         *ngFor="let record of undone_records"
         [record]="record"
@@ -6,12 +6,19 @@
         (done)="changeRecordState(record.id, !record.done)"
     >
     </record-line>
-</div>
+</div> -->
 
-<ng-template #no_records>
+<record-line
+    *ngFor="let record of records$ | async"
+    [record]="record"
+    (delete)="recordDelete(record.id)"
+    (done)="changeRecordState(record.id, !record.done)"
+>
+</record-line>
+<!-- <ng-template #no_records>
     <mat-card>
         <mat-card-content>
             No records yet :(
         </mat-card-content>
     </mat-card>
-</ng-template>
+</ng-template> -->

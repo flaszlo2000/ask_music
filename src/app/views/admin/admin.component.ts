@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Subject } from 'rxjs';
+import { WebsocketService } from './services/websocket.service';
 
 @Component({
   selector: 'app-admin',
