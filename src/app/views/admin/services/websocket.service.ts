@@ -9,7 +9,7 @@ import { RecordModel } from '../models/record.model';
 export class WebsocketService {
   private ws: WebSocket = new WebSocket(environment.ws_records_uri);
 
-  public data$(): Observable<Array<RecordModel>> {
+  public getData(): Observable<Array<RecordModel>> {
     return new Observable<Array<RecordModel>>(
        observer => {
 

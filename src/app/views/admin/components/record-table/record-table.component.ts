@@ -1,8 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Subscription, switchMap, catchError, of, Observable } from 'rxjs';
-import { EventUpdateHandler } from '../../classes/event_update_handler';
-import { RefreshableDataSource } from '../../classes/refreshable_data_source';
+import { Observable } from 'rxjs';
+import { HttpResponeHandler } from 'src/app/shared/classes/http_response_handler';
 import { RecordModel } from '../../models/record.model';
 import { AdminService } from '../../services/admin.service';
 import { WebsocketService } from '../../services/websocket.service';
@@ -12,11 +11,7 @@ import { WebsocketService } from '../../services/websocket.service';
   templateUrl: './record-table.component.html',
   styleUrls: ['./record-table.component.css']
 })
-export class RecordTableComponent extends EventUpdateHandler implements OnDestroy {
-  // private r_event_records: RefreshableDataSource<Array<RecordModel>>;
-  // private ongoing_event_records_sub: Subscription;
-  private ongoing_event_records?: Array<RecordModel>;
-
+export class RecordTableComponent extends HttpResponeHandler {
   public records$: Observable<Array<RecordModel>>;
 
   constructor(
@@ -26,66 +21,14 @@ export class RecordTableComponent extends EventUpdateHandler implements OnDestro
   ) {
     super(snackbar);
 
-    // this.r_event_records = new RefreshableDataSource<Array<RecordModel>>(
-    //   //! FIXME make this on call
-    //   this.admin_service.getOngoingEvent().pipe(
-    //     switchMap(ongoing_event => {
-    //       return this.admin_service.getRecordsFor(ongoing_event.id).pipe(
-    //         catchError((err) => {
-    //           console.log("------------------------------------------")
-    //           return of(err);
-    //         })
-    //       );
-    //     })
-    //   )
-    // );
-
-    // this.ongoing_event_records_sub = this.r_event_records.data$.subscribe(result => {
-    //   this.ongoing_event_records = result;
-    // });
-
-
-    this.records$ = this.ws_sevice.data$();
-  }
-
-  override ngOnDestroy(): void {
-    super.ngOnDestroy();  
-    // this.ongoing_event_records_sub.unsubscribe();
-  }
-
-  private recordFilter(done: boolean): Array<RecordModel> {
-    let result = new Array<RecordModel>()
-
-    if(!!this.ongoing_event_records) {
-      this.ongoing_event_records.forEach(elem => {
-        if(elem.done === done) {
-          result.push(elem);
-        }
-      })
-    }
-
-    return result
-  }
-
-  public get undone_records(): Array<RecordModel> {
-    return this.recordFilter(false);
-  }
-
-  public get done_records(): Array<RecordModel> {
-    return this.recordFilter(true);
-  }
-
-  protected refresh(): void {
-    // this.r_event_records.refresh();
+    this.records$ = this.ws_sevice.getData();
   }
 
   public recordDelete(id: number): void {
-    this.refresh();
     console.log("TODO: record delete");
   }
 
   private handleSuccessfulStateChange(): void {
-    this.refresh();
     this.handleSuccess();
   }
 
