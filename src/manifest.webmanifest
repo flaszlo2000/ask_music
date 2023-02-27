@@ -1,6 +1,6 @@
 {
-  "name": "ask_music",
-  "short_name": "ask_music",
+  "name": "Schoolbuilding music requester",
+  "short_name": "Music requester",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",

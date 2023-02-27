@@ -18,6 +18,10 @@
         "src/app/**/*.component.spec.ts": true,
         "src/app/**/*.service.spec.ts": true,
         ".angular": true,
+        ".firebase": true,
+        "dist": true,
+        ".firebaserc": true,
+        "firebase.json": true
     },
     "terminal.integrated.cwd": "./src/app",
     "editor.acceptSuggestionOnCommitCharacter": false,
