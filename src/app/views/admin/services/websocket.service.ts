@@ -16,8 +16,8 @@ export class WebsocketService {
         this.ws.onmessage = (event) =>
           observer.next(JSON.parse(event.data).data);
 
-        this.ws.onerror = (event) => observer.error(event);
 
+        this.ws.onerror = (event) => observer.error(event);
         this.ws.onclose = (event) => observer.complete();
 
         return () =>

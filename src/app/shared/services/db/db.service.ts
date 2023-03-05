@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { OnGoingEventModel } from '../../models/ongoing_event.model';
+import { EventModel } from '../../models/event.model';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -13,8 +13,8 @@ export class DbService {
 
   constructor(protected http_client: HttpClient) { }
 
-  public getOngoingEvent(): Observable<OnGoingEventModel> {
-    return this.http_client.get<OnGoingEventModel>(this.SERVER_BASE_URL.concat("/event"));
+  public getActiveEvent(): Observable<EventModel> {
+    return this.http_client.get<EventModel>(this.SERVER_BASE_URL.concat("/event"));
   }
 
   public checkPasswordForEvent(event_id: string, password: string): Observable<Boolean> {

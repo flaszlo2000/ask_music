@@ -7,7 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { OngoingEventService } from 'src/app/shared/services/ongoing_event/ongoing-event.service';
+import { EventService } from 'src/app/shared/services/event/event.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { RouterModule } from '@angular/router';
 import { VisibilityInputModule } from 'src/app/shared/components/visibility-input/visibility-input.module';
@@ -29,7 +29,7 @@ import { VisibilityInputModule } from 'src/app/shared/components/visibility-inpu
     VisibilityInputModule
   ],
   providers: [
-    OngoingEventService,
+    EventService,
   ],
   exports: [
     LandingPageComponent

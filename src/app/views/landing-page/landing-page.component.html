@@ -3,9 +3,9 @@
         <mat-card-header>
             Welcome to schoolbuild's music requester!
         </mat-card-header>
-        <ng-container *ngIf="ongoing_event$ | async; else there_is_no_ongoing_event">
+        <ng-container *ngIf="active_event$ | async; else no_active_event">
             <div class="event-name">
-                Current event's name: {{(ongoing_event$ | async)?.name}}
+                Current event's name: {{(active_event$ | async)?.name}}
             </div>
             <mat-card-content>
                 <div>
@@ -22,7 +22,7 @@
     </mat-card>
 </main>
 
-<ng-template #there_is_no_ongoing_event>
+<ng-template #no_active_event>
     <mat-card-content id="no-event">
         <div>
             Sorry, but currently we don't host any event! :(

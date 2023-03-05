@@ -1,6 +1,6 @@
 <div class="event-info-content">
     <mat-card>
-        <ng-container *ngIf="!!event_detail; else no_ongoing_event">
+        <ng-container *ngIf="!!event_detail; else no_active_event">
             <mat-card-title>We are hosting an event!</mat-card-title>
             <mat-card-content>
                 <event-info
@@ -31,7 +31,7 @@
     </mat-card>
 </div>
 
-<ng-template #no_ongoing_event>
+<ng-template #no_active_event>
     <mat-card-content>
         There is no active event!
     </mat-card-content>    

@@ -5,8 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable, Subscription, switchMap } from 'rxjs';
 import { HttpResponeHandler } from 'src/app/shared/classes/http_response_handler';
-import { OnGoingEventModel } from 'src/app/shared/models/ongoing_event.model';
-import { OngoingEventService } from 'src/app/shared/services/ongoing_event/ongoing-event.service';
+import { EventModel } from 'src/app/shared/models/event.model';
+import { EventService } from 'src/app/shared/services/event/event.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -14,7 +14,7 @@ import { OngoingEventService } from 'src/app/shared/services/ongoing_event/ongoi
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent extends HttpResponeHandler {
-  public ongoing_event$: Observable<OnGoingEventModel>;
+  public active_event$: Observable<EventModel>;
   public event_password = new FormControl('',
     [
       Validators.required,
@@ -26,12 +26,12 @@ export class LandingPageComponent extends HttpResponeHandler {
   public waiting_for_response = false;
 
   constructor(
-    private ongoing_event_service: OngoingEventService,
+    private event_service: EventService,
     private router: Router,
     private error_snackbar: MatSnackBar,
   ) {
     super(error_snackbar);
-    this.ongoing_event$ = this.ongoing_event_service.getOngoingEvent();
+    this.active_event$ = this.event_service.getActiveEvent();
   }
 
 
@@ -58,11 +58,11 @@ export class LandingPageComponent extends HttpResponeHandler {
     const password = !!this.event_password.value ? this.event_password.value : "";
     this.waiting_for_response = true    
 
-    this.http_response_sub = this.ongoing_event$.pipe(
+    this.http_response_sub = this.active_event$.pipe(
       switchMap(value => {
         this.event_id = value.id;
 
-        return this.ongoing_event_service.tryToLogin(this.event_id, password)
+        return this.event_service.tryToLogin(this.event_id, password)
       })
     ).subscribe(
       {

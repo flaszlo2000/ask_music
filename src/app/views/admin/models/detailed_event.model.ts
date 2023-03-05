@@ -1,6 +1,6 @@
-import { OnGoingEventModel } from "src/app/shared/models/ongoing_event.model";
+import { EventModel } from "src/app/shared/models/event.model";
 
-export interface DetailedEventModel extends OnGoingEventModel {
+export interface DetailedEventModel extends EventModel {
     password: string,
     note: string,
     alive: boolean

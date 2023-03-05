@@ -1,11 +1,10 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { HttpResponeHandler } from 'src/app/shared/classes/http_response_handler';
 import { LocalStorageService } from 'src/app/shared/services/db/local-storage.service';
-import { RecordsService } from 'src/app/shared/services/ongoing_event/records.service';
+import { RecordsService } from 'src/app/shared/services/event/records.service';
 
 @Component({
   selector: 'app-home',

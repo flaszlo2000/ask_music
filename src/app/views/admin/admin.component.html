@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">Schoolbuilding music request admin</mat-toolbar>
 <mat-tab-group dynamicHeight color="accent" [(selectedIndex)]=selectedIndex>
-    <mat-tab label="Ongoing event info">
+    <mat-tab label="Active event info">
         <admin-current-event
             [event_update$]="events_update.asObservable()"
             (eventUpdate)="eventInfoUpdate()"

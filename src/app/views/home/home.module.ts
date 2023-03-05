@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { RecordsService } from 'src/app/shared/services/ongoing_event/records.service';
+import { RecordsService } from 'src/app/shared/services/event/records.service';
 import { RouterModule } from '@angular/router';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { StoredRecordComponent } from './components/stored-record/stored-record.component';

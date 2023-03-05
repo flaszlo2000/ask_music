@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { OnGoingEventModel } from '../../models/ongoing_event.model';
+import { EventModel } from '../../models/event.model';
 import { DbService } from '../db/db.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class OngoingEventService {
+export class EventService {
   constructor(
     private db_service: DbService,
   ) { }
 
-  public getOngoingEvent(): Observable<OnGoingEventModel> {
-    return this.db_service.getOngoingEvent();
+  public getActiveEvent(): Observable<EventModel> {
+    return this.db_service.getActiveEvent();
   }
 
   public tryToLogin(event_id: string, password: string): Observable<Boolean> {
