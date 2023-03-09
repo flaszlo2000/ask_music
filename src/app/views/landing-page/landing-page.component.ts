@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { Observable, Subscription, switchMap } from 'rxjs';
 import { HttpResponeHandler } from 'src/app/shared/classes/http_response_handler';
 import { EventModel } from 'src/app/shared/models/event.model';
+import { TokenModel } from 'src/app/shared/models/token.model';
+import { LocalStorageService } from 'src/app/shared/services/db/local-storage.service';
 import { EventService } from 'src/app/shared/services/event/event.service';
 
 @Component({
@@ -27,6 +29,7 @@ export class LandingPageComponent extends HttpResponeHandler {
 
   constructor(
     private event_service: EventService,
+    private local_storage_service: LocalStorageService,
     private router: Router,
     private error_snackbar: MatSnackBar,
   ) {
@@ -35,8 +38,10 @@ export class LandingPageComponent extends HttpResponeHandler {
   }
 
 
-  private handleSuccessfulLogin(): void {
+  private handleSuccessfulLogin(jwt: TokenModel): void {
     this.cleanupSubscription();
+
+    this.local_storage_service.store("JWT", jwt.access_token);
 
     this.router.navigateByUrl(
       "/home", {
@@ -66,7 +71,7 @@ export class LandingPageComponent extends HttpResponeHandler {
       })
     ).subscribe(
       {
-        next: () => this.handleSuccessfulLogin(),
+        next: (jwt) => this.handleSuccessfulLogin(jwt),
         error: (err) => this.handleUnsuccessfulLogin(err)
       }  
     );

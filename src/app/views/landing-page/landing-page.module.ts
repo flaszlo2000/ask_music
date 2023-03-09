@@ -11,6 +11,7 @@ import { EventService } from 'src/app/shared/services/event/event.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { RouterModule } from '@angular/router';
 import { VisibilityInputModule } from 'src/app/shared/components/visibility-input/visibility-input.module';
+import { LocalStorageService } from 'src/app/shared/services/db/local-storage.service';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { VisibilityInputModule } from 'src/app/shared/components/visibility-inpu
   ],
   providers: [
     EventService,
+    LocalStorageService
   ],
   exports: [
     LandingPageComponent

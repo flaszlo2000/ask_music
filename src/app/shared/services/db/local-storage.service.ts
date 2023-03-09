@@ -24,6 +24,10 @@ export class LocalStorageService {
   }
 
   public store(key: string, value: string): void {
+    localStorage.setItem(key, value);
+  }
+
+  public storeList(key: string, value: string): void {
     let already_stored = this.load(key);
     let sequence_to_save: string = ""
 
@@ -35,6 +39,6 @@ export class LocalStorageService {
       )
     }
 
-    localStorage.setItem(key, sequence_to_save);
+    this.store(key, sequence_to_save);
   }
 }
