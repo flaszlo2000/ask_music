@@ -9,6 +9,8 @@ export class LocalStorageService {
 
   constructor() { }
 
+  // TODO: instead of string, use enum
+
   public load(key: string): string | null {
     return localStorage.getItem(key);
   }
