@@ -30,7 +30,6 @@ export class LandingPageComponent extends HttpResponeHandler {
   constructor(
     private event_service: EventService,
     private local_storage_service: LocalStorageService,
-    private router: Router,
     private error_snackbar: MatSnackBar,
   ) {
     super(error_snackbar);

@@ -24,7 +24,6 @@ export class HomeComponent extends HttpResponeHandler implements OnInit {
   constructor(
     private records_service: RecordsService,
     private local_storage_service: LocalStorageService,
-    private router: Router,
     private response_snackbar: MatSnackBar
   ) {
     super(response_snackbar);
