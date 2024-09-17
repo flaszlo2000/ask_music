@@ -1,15 +1,15 @@
 import { HttpErrorResponse } from "@angular/common/http";
-import { Host } from "@angular/core";
+import { inject } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 
 export class HttpResponeHandler {
     protected http_response_sub?: Subscription;
-   
+    protected router: Router = inject(Router);
+
     constructor(
         private response_mat_snackbar: MatSnackBar,
-        protected router: Router
     ) { }
 
     protected cleanupSubscription(): void {
