@@ -17,7 +17,7 @@ export abstract class EventUpdateHandler extends HttpResponeHandler implements O
   }
 
   constructor(
-    private response_snackbar: MatSnackBar
+    private response_snackbar: MatSnackBar,
   ) {
     super(response_snackbar)
   }

@@ -24,7 +24,6 @@ export class HomeComponent extends HttpResponeHandler implements OnInit {
   constructor(
     private records_service: RecordsService,
     private local_storage_service: LocalStorageService,
-    private router: Router,
     private response_snackbar: MatSnackBar
   ) {
     super(response_snackbar);
@@ -57,7 +56,7 @@ export class HomeComponent extends HttpResponeHandler implements OnInit {
 
   private httpSuccess(requested_record: string): void {
     this.handleSuccess();
-    this.local_storage_service.store(this.event_id, requested_record);
+    this.local_storage_service.storeList(this.event_id, requested_record);
     this.request_form_control.setValue("");
     this.updateAlreadySentRequests();
   }

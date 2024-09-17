@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserGuard } from './shared/guards/user.guard';
 import { AdminComponent } from './views/admin/admin.component';
 import { AdminLoginComponent } from './views/admin/components/admin-login/admin-login.component';
 import { HomeComponent } from './views/home/home.component';
@@ -14,7 +15,8 @@ const routes: Routes = [
   },
   {
     "path": "home",
-    "component": HomeComponent
+    "component": HomeComponent,
+    "canActivate": [UserGuard]
   },
   {
     "path": "admin",

@@ -1,12 +1,15 @@
 import { HttpErrorResponse } from "@angular/common/http";
+import { inject } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 
 export class HttpResponeHandler {
     protected http_response_sub?: Subscription;
-    
+    protected router: Router = inject(Router);
+
     constructor(
-        private response_mat_snackbar: MatSnackBar
+        private response_mat_snackbar: MatSnackBar,
     ) { }
 
     protected cleanupSubscription(): void {
@@ -38,8 +41,12 @@ export class HttpResponeHandler {
                 final_msg = err_msg;
             }
 
-            if(err.status != 400) {
+            if(err.status != 400) { // bad request
                 final_msg = unknown_error_msg;
+            }
+
+            if(err.status == 401) { // unauthorized
+                this.router.navigateByUrl("/");
             }
         }
 
